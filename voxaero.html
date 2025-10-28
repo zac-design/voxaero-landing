@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxAero - Master the Radio. Own the Sky.</title>
+    <meta name="description" content="AI-powered ATC training for confident pilots. Practice realistic radio communications anytime, anywhere.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f1923;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-text {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: none;
+            margin: 0;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #b8c5d6;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .description p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 25px 35px;
+            margin: 50px auto;
+            max-width: 750px;
+            border-radius: 8px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .highlight-box p {
+            font-size: 20px;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* CTA Buttons */
+        .cta-section {
+            margin-top: 60px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 20px 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #00d4ff;
+            color: #0f1923;
+        }
+
+        .btn-primary:hover {
+            background: #00b8e6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7a8a9e;
+            font-size: 14px;
+        }
+
+        .footer-emphasis {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a2634;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #7a8a9e;
+            font-size: 30px;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #00d4ff;
+        }
+
+        .modal h2 {
+            color: #00d4ff;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 17px;
+            color: #b8c5d6;
+            line-height: 1.6;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        /* Interest Modal */
+        .interest-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .interest-modal.active {
+            display: flex;
+        }
+
+        .interest-content {
+            background: #1a2634;
+            padding: 60px 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .interest-content h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .interest-content p {
+            color: #b8c5d6;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .checkmark {
+            font-size: 60px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 48px;
+            }
+
+            .highlight-box p {
+                font-size: 18px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .modal-content, .interest-content {
+                padding: 30px 20px;
+            }
+
+            .logo {
+                max-width: 320px;
+            }
+
+            .feature-list li {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <h1 class="logo-text">VoxAero</h1>
+            </div>
+
+            <div class="description">
+                <p>Radio communications are the most intimidating part of flight training. Students freeze up on frequency. There's nowhere to practice before you're live with real ATC.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p>Practice with AI controllers that respond in real-time to YOUR calls—not pre-recorded scripts. Dynamic conversations that adapt to every scenario. <strong>Build confidence before you're airborne.</strong></p>
+            </div>
+
+            <div class="cta-section">
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="openModal()">See how it works</button>
+                    <button class="btn btn-secondary" onclick="showInterest()">I'm interested</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p><span class="footer-emphasis">Built by flight instructors, for pilots.</span></p>
+        <p style="margin-top: 10px;">© 2025 VoxAero. All rights reserved.</p>
+    </footer>
+
+    <!-- How It Works Modal -->
+    <div class="modal" id="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2>How VoxAero Works</h2>
+            <ul class="feature-list">
+                <li><strong>Real-time AI controllers</strong> that respond naturally to your radio calls—not recordings</li>
+                <li><strong>Realistic scenarios</strong> from engine start to shutdown at towered and non-towered airports</li>
+                <li><strong>Practice anytime, anywhere</strong> - no aircraft, no instructor, no pressure</li>
+                <li><strong>Immediate feedback</strong> on your phraseology and procedures</li>
+                <li><strong>Multiple airport types</strong> - Class B, C, D, and uncontrolled fields</li>
+                <li><strong>Dynamic conversations</strong> that adapt to your responses like real ATC</li>
+                <li><strong>Build confidence</strong> before you're live on frequency</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Interest Modal -->
+    <div class="interest-modal" id="interest-modal" onclick="closeInterestModal(event)">
+        <div class="interest-content" onclick="event.stopPropagation()">
+            <div class="checkmark">✓</div>
+            <h2>Thanks for your interest!</h2>
+            <p>VoxAero is currently in development. We're building something special for pilots who want to master radio communications.</p>
+            <button class="btn btn-primary" onclick="closeInterestModal()" style="margin-top: 10px;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let interestCount = 0;
+
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'modal') {
+                document.getElementById('modal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function showInterest() {
+            interestCount++;
+            console.log('Interest click #' + interestCount);
+            
+            // You can add analytics tracking here later
+            // Example: gtag('event', 'interest_click', { 'value': interestCount });
+            
+            document.getElementById('interest-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInterestModal(event) {
+            if (!event || event.target.id === 'interest-modal') {
+                document.getElementById('interest-modal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeInterestModal();
+            }
+        });
+    </script>
+</body>
+</html>
