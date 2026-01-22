@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -53,15 +52,6 @@
         .logo-container {
             margin-bottom: 60px;
             animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-text {
-            font-size: 72px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: none;
-            margin: 0;
         }
 
         .description {
@@ -97,7 +87,6 @@
             line-height: 1.7;
         }
 
-        /* CTA Buttons */
         .cta-section {
             margin-top: 60px;
             animation: fadeInUp 1s ease-out 0.8s both;
@@ -146,7 +135,6 @@
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 40px 20px;
@@ -159,7 +147,6 @@
             font-weight: 600;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -236,7 +223,6 @@
             margin-right: 15px;
         }
 
-        /* Interest Modal */
         .interest-modal {
             display: none;
             position: fixed;
@@ -285,7 +271,6 @@
             margin-bottom: 20px;
         }
 
-        /* Animations */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -308,10 +293,9 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 48px;
+            .logo-container img {
+                max-width: 280px;
             }
 
             .highlight-box p {
@@ -330,10 +314,6 @@
                 padding: 30px 20px;
             }
 
-            .logo {
-                max-width: 320px;
-            }
-
             .feature-list li {
                 font-size: 16px;
             }
@@ -344,7 +324,7 @@
     <main class="hero">
         <div class="hero-content">
             <div class="logo-container">
-                <h1 class="logo-text">VoxAero</h1>
+                <img src="logo.svg" alt="VoxAero" style="max-width: 400px;">
             </div>
 
             <div class="description">
@@ -369,7 +349,6 @@
         <p style="margin-top: 10px;">© 2025 VoxAero. All rights reserved.</p>
     </footer>
 
-    <!-- How It Works Modal -->
     <div class="modal" id="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -386,7 +365,6 @@
         </div>
     </div>
 
-    <!-- Interest Modal -->
     <div class="interest-modal" id="interest-modal" onclick="closeInterestModal(event)">
         <div class="interest-content" onclick="event.stopPropagation()">
             <div class="checkmark">✓</div>
@@ -414,10 +392,6 @@
         function showInterest() {
             interestCount++;
             console.log('Interest click #' + interestCount);
-            
-            // You can add analytics tracking here later
-            // Example: gtag('event', 'interest_click', { 'value': interestCount });
-            
             document.getElementById('interest-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -429,7 +403,6 @@
             }
         }
 
-        // Close modals with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
